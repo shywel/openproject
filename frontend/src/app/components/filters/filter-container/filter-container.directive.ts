@@ -58,11 +58,8 @@ export class WorkPackageFilterContainerComponent extends UntilDestroyedMixin imp
 
   ngOnInit():void {
     this.wpTableFilters
-      .pristine$()
-      .pipe(
-        this.untilDestroyed()
-      )
-      .subscribe(() => {
+      .onReady()
+      .then(() => {
         this.filters = this.wpTableFilters.current;
         this.loaded = true;
         this.cdRef.detectChanges();
